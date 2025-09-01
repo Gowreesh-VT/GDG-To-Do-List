@@ -1,0 +1,402 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f3f2f1;
+    color: #323130;
+    font-size: 14px;
+    line-height: 1.428571429;
+    overflow: hidden;
+}
+
+/* Login Modal Styles */
+.login-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.login-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.login-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+}
+
+.login-container {
+    position: relative;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    width: 100%;
+    max-width: 440px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Login Header */
+.login-header {
+    padding: 20px 44px 0px 44px;
+    text-align: center;
+}
+
+.Google-logo {
+    margin-bottom: -24px;
+}
+
+.login-header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #323130;
+    margin-bottom: 8px;
+}
+
+.login-header p {
+    font-size: 15px;
+    color: #605e5c;
+    font-weight: 400;
+}
+
+/* Login Content */
+.login-content {
+    padding: 0 44px 44px 44px;
+}
+
+/* Auth Buttons */
+.auth-button {
+    width: 100%;
+    height: 48px;
+    border: 1px solid #8a8886;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #323130;
+    font-size: 15px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    text-decoration: none;
+    outline: none;
+}
+
+.auth-button:hover {
+    background: #f8f8f8;
+    border-color: #323130;
+}
+
+.auth-button:focus {
+    border-color: #0078d4;
+    box-shadow: 0 0 0 1px #0078d4;
+}
+
+.auth-button:active {
+    background: #edebe9;
+}
+
+.microsoft-btn {
+    border-color: #0078d4;
+    color: #0078d4;
+}
+
+.microsoft-btn:hover {
+    background: #f3f9fd;
+    border-color: #106ebe;
+    color: #106ebe;
+}
+
+.primary-btn {
+    background: #0078d4;
+    border-color: #0078d4;
+    color: #ffffff;
+}
+
+.primary-btn:hover {
+    background: #106ebe;
+    border-color: #106ebe;
+}
+
+.primary-btn:active {
+    background: #005a9e;
+    border-color: #005a9e;
+}
+
+.google-btn:hover {
+    background: #f8f9fa;
+    border-color: #dadce0;
+}
+
+.github-btn:hover {
+    background: #f6f8fa;
+    border-color: #d1d9e0;
+}
+
+.auth-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+/* Form Styles */
+.email-form {
+    margin: 24px 0;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.input-group input {
+    width: 100%;
+    height: 48px;
+    padding: 12px 16px 12px 44px;
+    border: 1px solid #8a8886;
+    border-radius: 4px;
+    font-size: 15px;
+    background: #ffffff;
+    color: #323130;
+    outline: none;
+    transition: all 0.15s ease;
+}
+
+.input-group input:focus {
+    border-color: #0078d4;
+    box-shadow: 0 0 0 1px #0078d4;
+}
+
+.input-group input::placeholder {
+    color: #a19f9d;
+}
+
+.input-group i {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #605e5c;
+    font-size: 16px;
+}
+
+
+.divider {
+    position: relative;
+    text-align: center;
+    margin: 24px 0;
+    color: #605e5c;
+    font-size: 16px;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #edebe9;
+}
+
+.divider span {
+    background: #ffffff;
+    padding: 0 16px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Login Footer */
+.login-footer {
+    margin-top: 32px;
+}
+
+.signup-link {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 13px;
+    color: #605e5c;
+}
+
+.signup-link a {
+    color: #0078d4;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.links a {
+    color: #0078d4;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+/* Main App Styles */
+.main-app {
+    width: 100%;
+    height: 100vh;
+    background: #f3f2f1;
+    transition: opacity 0.3s ease;
+}
+
+.main-app.hidden {
+    display: none;
+}
+
+.app-header {
+    background: #ffffff;
+    border-bottom: 1px solid #edebe9;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #0078d4;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#userName {
+    font-size: 14px;
+    color: #323130;
+    font-weight: 600;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    color: #605e5c;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+}
+
+.logout-btn:hover {
+    background: #f3f2f1;
+    color: #323130;
+}
+
+.app-content {
+    padding: 48px 24px;
+    text-align: center;
+}
+
+.app-content h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #323130;
+    margin-bottom: 16px;
+}
+
+.app-content p {
+    font-size: 16px;
+    color: #605e5c;
+}
+
+/* Loading States */
+.auth-button.loading {
+    position: relative;
+    color: transparent;
+}
+
+.auth-button.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    color: #0078d4;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error States */
+.input-group.error input {
+    border-color: #d13438;
+    box-shadow: 0 0 0 1px #d13438;
+}
+
+.error-message {
+    color: #d13438;
+    font-size: 12px;
+    margin-top: 4px;
+    margin-left: 4px;
+}
+
+.input-group.success input {
+    border-color: #107c10;
+    box-shadow: 0 0 0 1px #107c10;
+}

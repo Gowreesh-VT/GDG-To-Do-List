@@ -14,6 +14,23 @@ class AuthManager {
     async initializeAuth() {
         try {
             this.supabase = window.supabase.createClient(this.supabaseUrl, this.supabaseKey);
+            
+            // Check for existing session
+            const { data: { session } } = await this.supabase.auth.getSession();
+            if (session) {
+                this.handleSuccessfulLogin(session.user);
+                return;
+            }
+
+            // Listen for auth state changes (important for OAuth redirects)
+            this.supabase.auth.onAuthStateChange((event, session) => {
+                if (event === 'SIGNED_IN' && session) {
+                    this.handleSuccessfulLogin(session.user);
+                } else if (event === 'SIGNED_OUT') {
+                    this.currentUser = null;
+                    this.showLoginModal();
+                }
+            });
 
             this.showLoginModal();
         } catch (error) {
@@ -68,7 +85,8 @@ class AuthManager {
 
             this.handleSuccessfulLogin(data.user);
             this.hideAllModals();
-            this.showMessage('Login successful!', 'success');
+            // Remove the success alert for smoother transition
+            console.log('Login successful!');
 
         } catch (error) {
             console.error('Login error:', error);
@@ -149,6 +167,7 @@ class AuthManager {
         const modal = document.getElementById('loginModal');
         if (modal) {
             modal.style.display = 'flex';
+            modal.classList.add('active');
         }
         this.hideMainApp();
     }
@@ -157,6 +176,7 @@ class AuthManager {
         const loginModal = document.getElementById('loginModal');
         if (loginModal) {
             loginModal.style.display = 'none';
+            loginModal.classList.remove('active');
         }
     }
 
@@ -164,6 +184,7 @@ class AuthManager {
         const mainApp = document.getElementById('mainApp');
         if (mainApp) {
             mainApp.style.display = 'block';
+            mainApp.classList.remove('hidden');
         }
     }
 
@@ -171,6 +192,7 @@ class AuthManager {
         const mainApp = document.getElementById('mainApp');
         if (mainApp) {
             mainApp.style.display = 'none';
+            mainApp.classList.add('hidden');
         }
     }
 

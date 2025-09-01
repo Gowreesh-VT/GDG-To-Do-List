@@ -1,0 +1,130 @@
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .login-container {
+        max-width: 100%;
+        margin: 0 16px;
+        border-radius: 0;
+    }
+    
+    .login-header,
+    .login-content {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    
+    .links {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-header {
+        padding: 32px 16px 16px 16px;
+    }
+    
+    .login-content {
+        padding: 0 16px 32px 16px;
+    }
+    
+    .login-header h1 {
+        font-size: 20px;
+    }
+    
+    .auth-button {
+        height: 44px;
+        font-size: 14px;
+    }
+    
+    .input-group input {
+        height: 44px;
+        font-size: 14px;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .auth-button {
+        border-width: 2px;
+    }
+    
+    .input-group input {
+        border-width: 2px;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus Management */
+.auth-button:focus-visible,
+.input-group input:focus-visible,
+.logout-btn:focus-visible {
+    outline: 2px solid #0078d4;
+    outline-offset: 2px;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #1e1e1e;
+        color: #ffffff;
+    }
+    
+    .login-container {
+        background: #2d2d2d;
+        color: #ffffff;
+    }
+    
+    .login-header h1 {
+        color: #ffffff;
+    }
+    
+    .login-header p {
+        color: #c8c6c4;
+    }
+    
+    .auth-button {
+        background: #2d2d2d;
+        border-color: #605e5c;
+        color: #ffffff;
+    }
+    
+    .auth-button:hover {
+        background: #3c3c3c;
+    }
+    
+    .input-group input {
+        background: #2d2d2d;
+        border-color: #605e5c;
+        color: #ffffff;
+    }
+    
+    .input-group input::placeholder {
+        color: #8a8886;
+    }
+    
+    .divider::before {
+        background: #605e5c;
+    }
+    
+    .divider span {
+        background: #2d2d2d;
+    }
+    
+    .main-app {
+        background: #1e1e1e;
+    }
+    
+    .app-header {
+        background: #2d2d2d;
+        border-bottom-color: #605e5c;
+    }
+}

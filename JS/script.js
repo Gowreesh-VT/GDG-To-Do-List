@@ -234,4 +234,113 @@ class AuthManager {
 // Initialize auth when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     window.authManager = new AuthManager();
+
+    // Enhanced To-Do List Logic
+    const todoForm = document.getElementById('todoForm');
+    const todoInput = document.getElementById('todoInput');
+    const todoDate = document.getElementById('todoDate');
+    const todoList = document.getElementById('todoList');
+    const filterAll = document.getElementById('filterAll');
+    const filterActive = document.getElementById('filterActive');
+    const filterCompleted = document.getElementById('filterCompleted');
+    const clearCompleted = document.getElementById('clearCompleted');
+    let todos = [];
+    let filter = 'all';
+
+    function renderTodos() {
+        todoList.innerHTML = '';
+        let filtered = todos;
+        if (filter === 'active') filtered = todos.filter(t => !t.completed);
+        if (filter === 'completed') filtered = todos.filter(t => t.completed);
+        filtered.forEach((todo, idx) => {
+            const li = document.createElement('li');
+            li.className = 'todo-item' + (todo.completed ? ' completed' : '');
+
+            // Checkbox
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.checked = todo.completed;
+            checkbox.className = 'todo-checkbox';
+            checkbox.addEventListener('change', () => {
+                todo.completed = !todo.completed;
+                renderTodos();
+            });
+            li.appendChild(checkbox);
+
+            // Task text (editable)
+            const span = document.createElement('span');
+            span.className = 'todo-text';
+            span.textContent = todo.text;
+            span.contentEditable = true;
+            span.spellcheck = false;
+            span.addEventListener('blur', () => {
+                todo.text = span.textContent.trim();
+                renderTodos();
+            });
+            li.appendChild(span);
+
+            // Due date
+            if (todo.date) {
+                const dateLabel = document.createElement('span');
+                dateLabel.className = 'todo-date-label';
+                dateLabel.textContent = todo.date;
+                li.appendChild(dateLabel);
+            }
+
+            // Delete button
+            const delBtn = document.createElement('button');
+            delBtn.className = 'todo-delete';
+            delBtn.innerHTML = '<i class="fas fa-trash"></i>';
+            delBtn.addEventListener('click', () => {
+                todos.splice(todos.indexOf(todo), 1);
+                renderTodos();
+            });
+            li.appendChild(delBtn);
+
+            todoList.appendChild(li);
+        });
+    }
+
+    todoForm?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const value = todoInput.value.trim();
+        const dateValue = todoDate.value;
+        if (value) {
+            todos.push({ text: value, completed: false, date: dateValue });
+            todoInput.value = '';
+            todoDate.value = '';
+            renderTodos();
+        }
+    });
+
+    filterAll?.addEventListener('click', () => {
+        filter = 'all';
+        setActiveFilter();
+        renderTodos();
+    });
+    filterActive?.addEventListener('click', () => {
+        filter = 'active';
+        setActiveFilter();
+        renderTodos();
+    });
+    filterCompleted?.addEventListener('click', () => {
+        filter = 'completed';
+        setActiveFilter();
+        renderTodos();
+    });
+    clearCompleted?.addEventListener('click', () => {
+        todos = todos.filter(t => !t.completed);
+        renderTodos();
+    });
+
+    function setActiveFilter() {
+        [filterAll, filterActive, filterCompleted].forEach(btn => btn?.classList.remove('active'));
+        if (filter === 'all') filterAll?.classList.add('active');
+        if (filter === 'active') filterActive?.classList.add('active');
+        if (filter === 'completed') filterCompleted?.classList.add('active');
+    }
+
+    // Initial render
+    setActiveFilter();
+    renderTodos();
 });

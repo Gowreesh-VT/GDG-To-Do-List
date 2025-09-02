@@ -83,8 +83,19 @@
         </div>
         
         <div class="app-content">
-            <h1>Welcome to Microsoft To Do</h1>
-            <p>You are successfully logged in!</p>
+            <h1>My To Do List</h1>
+            <form id="todoForm" class="todo-form">
+                <input type="text" id="todoInput" placeholder="Add a new task..." autocomplete="off" required />
+                <input type="date" id="todoDate" class="todo-date" />
+                <button type="submit" id="addTodoBtn"><i class="fas fa-plus"></i></button>
+            </form>
+            <div class="todo-controls">
+                <button id="filterAll" class="filter-btn active">All</button>
+                <button id="filterActive" class="filter-btn">Active</button>
+                <button id="filterCompleted" class="filter-btn">Completed</button>
+                <button id="clearCompleted" class="clear-btn"><i class="fas fa-trash"></i> Clear Completed</button>
+            </div>
+            <ul id="todoList" class="todo-list"></ul>
         </div>
     </div>
 

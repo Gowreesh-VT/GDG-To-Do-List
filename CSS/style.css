@@ -7,13 +7,11 @@
 
 body {
     font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    background: linear-gradient(135deg, #232526 0%, #414345 100%);
-    color: #f3f3f3;
-    font-size: 16px;
-    line-height: 1.5;
-    min-height: 100vh;
-    width: 100vw;
-    overflow-x: hidden;
+    background: #f3f2f1;
+    color: #323130;
+    font-size: 14px;
+    line-height: 1.428571429;
+    overflow: hidden;
 }
 
 /* Login Modal Styles */
@@ -23,20 +21,16 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-        padding: 14px 18px;
-        border-radius: 10px;
-        background: #181818;
-        font-size: 1.08rem;
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
-    padding: 14px 18px;
-    border-radius: 10px;
-    background: #181818;
-    font-size: 1.08rem;
+}
+
+.login-modal.active {
     opacity: 1;
     visibility: visible;
 }
@@ -47,20 +41,14 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-        background: linear-gradient(90deg, #0078d4 0%, #005fa3 100%);
-        border-radius: 10px;
-        padding: 0 24px;
-        font-size: 1.08rem;
-        font-weight: 600;
-        box-shadow: 0 2px 8px rgba(0,120,212,0.15);
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(4px);
 }
 
 .login-container {
     position: relative;
     background: #ffffff;
-    gap: 16px;
-    width: 100%;
+    border-radius: 8px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
     width: 100%;
     max-width: 440px;
@@ -71,20 +59,11 @@ body {
 
 @keyframes slideIn {
     from {
-        background: #333;
-        color: #f3f3f3;
-        border-radius: 10px;
-        padding: 12px 24px;
-        font-size: 1rem;
-        flex: 1;
-        margin: 0 2px;
-        font-weight: 500;
+        transform: translateY(-20px);
         opacity: 0;
     }
     to {
-        background: linear-gradient(90deg, #0078d4 0%, #005fa3 100%);
-        color: #fff;
-        box-shadow: 0 2px 8px rgba(0,120,212,0.15);
+        transform: translateY(0);
         opacity: 1;
     }
 }
@@ -93,19 +72,15 @@ body {
 .login-header {
     padding: 20px 44px 0px 44px;
     text-align: center;
-    background: #444;
-    border-radius: 10px;
-    padding: 12px 24px;
-    font-size: 1rem;
-    font-weight: 500;
-    margin-left: 8px;
+}
+
+.Google-logo {
     margin-bottom: -24px;
 }
 
 .login-header h1 {
     font-size: 24px;
-        width: 100%;
-        min-height: 40vh;
+    font-weight: 600;
     color: #323130;
     margin-bottom: 8px;
 }
@@ -114,24 +89,16 @@ body {
     font-size: 15px;
     color: #605e5c;
     font-weight: 400;
-    background: #292929;
-    border-radius: 12px;
-    margin-bottom: 14px;
-    padding: 16px 18px;
-    font-size: 1.12rem;
-    width: 100%;
-    min-height: 56px;
 }
 
+/* Login Content */
 .login-content {
     padding: 0 44px 44px 44px;
 }
 
 /* Auth Buttons */
 .auth-button {
-        margin-right: 18px;
-        width: 26px;
-        height: 26px;
+    width: 100%;
     height: 48px;
     border: 1px solid #8a8886;
     border-radius: 4px;
@@ -141,22 +108,13 @@ body {
     font-weight: 400;
     cursor: pointer;
     transition: all 0.15s ease;
-        font-size: 1.12rem;
-        padding: 0 8px;
-        transition: color 0.2s;
-        min-width: 0;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
     margin-bottom: 16px;
     text-decoration: none;
-        margin-left: 16px;
-        font-size: 1rem;
-        color: #b3b3b3;
-        background: #181818;
-        border-radius: 8px;
-        padding: 6px 14px;
-        font-weight: 500;
+    outline: none;
 }
 
 .auth-button:hover {
@@ -166,15 +124,11 @@ body {
 
 .auth-button:focus {
     border-color: #0078d4;
-        color: #ff4c4c;
-        font-size: 1.4rem;
-        margin-left: 20px;
-        padding: 4px 8px;
+    box-shadow: 0 0 0 1px #0078d4;
 }
 
 .auth-button:active {
     background: #edebe9;
-        opacity: 0.7;
 }
 
 .microsoft-btn {
@@ -444,7 +398,6 @@ body {
     font-size: 1.08rem;
     box-shadow: 0 1px 4px rgba(0,0,0,0.10);
     transition: background 0.2s;
-}
 }
 .todo-date {
     padding: 16px 20px;

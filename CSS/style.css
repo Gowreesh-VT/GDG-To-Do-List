@@ -7,11 +7,13 @@
 
 body {
     font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    background: #f3f2f1;
-    color: #323130;
-    font-size: 14px;
-    line-height: 1.428571429;
-        width: 100%;
+    background: linear-gradient(135deg, #232526 0%, #414345 100%);
+    color: #f3f3f3;
+    font-size: 16px;
+    line-height: 1.5;
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
 }
 
 /* Login Modal Styles */
@@ -31,12 +33,10 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
-}
-
-        padding: 14px 18px;
-        border-radius: 10px;
-        background: #181818;
-        font-size: 1.08rem;
+    padding: 14px 18px;
+    border-radius: 10px;
+    background: #181818;
+    font-size: 1.08rem;
     opacity: 1;
     visibility: visible;
 }
@@ -59,8 +59,8 @@ body {
 .login-container {
     position: relative;
     background: #ffffff;
-        gap: 16px;
-        width: 100%;
+    gap: 16px;
+    width: 100%;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
     width: 100%;
     max-width: 440px;
@@ -93,14 +93,12 @@ body {
 .login-header {
     padding: 20px 44px 0px 44px;
     text-align: center;
-}
-
-        background: #444;
-        border-radius: 10px;
-        padding: 12px 24px;
-        font-size: 1rem;
-        font-weight: 500;
-        margin-left: 8px;
+    background: #444;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-left: 8px;
     margin-bottom: -24px;
 }
 
@@ -116,15 +114,15 @@ body {
     font-size: 15px;
     color: #605e5c;
     font-weight: 400;
+    background: #292929;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    padding: 16px 18px;
+    font-size: 1.12rem;
+    width: 100%;
+    min-height: 56px;
 }
 
-        background: #292929;
-        border-radius: 12px;
-        margin-bottom: 14px;
-        padding: 16px 18px;
-        font-size: 1.12rem;
-        width: 100%;
-        min-height: 56px;
 .login-content {
     padding: 0 44px 44px 44px;
 }
@@ -177,6 +175,7 @@ body {
 .auth-button:active {
     background: #edebe9;
         opacity: 0.7;
+}
 
 .microsoft-btn {
     border-color: #0078d4;
@@ -331,10 +330,14 @@ body {
 
 /* Main App Styles */
 .main-app {
-    width: 100%;
-    height: 100vh;
-    background: #f3f2f1;
+    width: 100vw;
+    min-height: 100vh;
+    background: transparent;
     transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .main-app.hidden {
@@ -391,15 +394,20 @@ body {
 }
 
 .app-content {
-    padding: 48px 24px;
-    text-align: center;
-    max-width: 420px;
-    margin: 32px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    max-width: 600px;
+    margin: 48px auto;
     background: #22223b;
-    border-radius: 16px;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
-    padding: 32px 24px 24px 24px;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    padding: 48px 40px 40px 40px;
     color: #fff;
+    gap: 24px;
+    animation: fadeIn 0.5s;
 }
 
 .app-content h1 {
@@ -417,46 +425,57 @@ body {
 /* To-Do List Styles */
 .todo-form {
     display: flex;
-    gap: 14px;
-    margin-bottom: 24px;
+    gap: 18px;
+    margin-bottom: 32px;
     width: 100%;
+    background: #181818;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    padding: 18px 24px;
+    align-items: center;
 }
 .todo-form input[type="text"] {
     flex: 1;
-    padding: 14px 18px;
-    border-radius: 10px;
+    padding: 16px 20px;
+    border-radius: 12px;
     border: none;
-    background: #181818;
+    background: #232526;
     color: #fff;
     font-size: 1.08rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+    transition: background 0.2s;
+}
 }
 .todo-date {
-    padding: 14px 18px;
-    border-radius: 10px;
+    padding: 16px 20px;
+    border-radius: 12px;
     border: none;
-    background: #181818;
+    background: #232526;
     color: #fff;
     font-size: 1.08rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+    transition: background 0.2s;
 }
 #addTodoBtn {
     background: linear-gradient(90deg, #0078d4 0%, #005fa3 100%);
     color: #fff;
     border: none;
-    border-radius: 10px;
-    padding: 0 24px;
+    border-radius: 12px;
+    padding: 0 32px;
     font-size: 1.08rem;
     cursor: pointer;
     transition: background 0.2s;
-    font-weight: 600;
-    box-shadow: 0 2px 8px rgba(0,120,212,0.15);
+    font-weight: 700;
+    box-shadow: 0 2px 12px rgba(0,120,212,0.18);
+    letter-spacing: 0.5px;
 }
 #addTodoBtn:hover {
     background: #005fa3;
 }
 .todo-controls {
     display: flex;
-    gap: 16px;
-    margin-bottom: 18px;
+    gap: 20px;
+    margin-bottom: 24px;
     justify-content: space-between;
     width: 100%;
 }
@@ -464,31 +483,34 @@ body {
     background: #333;
     color: #f3f3f3;
     border: none;
-    border-radius: 10px;
-    padding: 12px 24px;
-    font-size: 1rem;
+    border-radius: 12px;
+    padding: 14px 28px;
+    font-size: 1.04rem;
     cursor: pointer;
     transition: background 0.2s;
     flex: 1;
     margin: 0 2px;
-    font-weight: 500;
+    font-weight: 600;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.10);
 }
 .filter-btn.active {
     background: linear-gradient(90deg, #0078d4 0%, #005fa3 100%);
     color: #fff;
-    box-shadow: 0 2px 8px rgba(0,120,212,0.15);
+    box-shadow: 0 2px 12px rgba(0,120,212,0.18);
+    border: 1px solid #0078d4;
 }
 .clear-btn {
     background: #444;
     color: #fff;
     border: none;
-    border-radius: 10px;
-    padding: 12px 24px;
-    font-size: 1rem;
+    border-radius: 12px;
+    padding: 14px 28px;
+    font-size: 1.04rem;
     cursor: pointer;
     transition: background 0.2s;
-    font-weight: 500;
+    font-weight: 600;
     margin-left: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.10);
 }
 .clear-btn:hover {
     background: #b71c1c;
@@ -499,61 +521,80 @@ body {
     margin: 0;
     width: 100%;
     min-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 .todo-item {
     display: flex;
     align-items: center;
     background: #292929;
-    border-radius: 12px;
-    margin-bottom: 14px;
-    padding: 16px 18px;
-    font-size: 1.12rem;
+    border-radius: 16px;
+    padding: 18px 22px;
+    font-size: 1.14rem;
     transition: background 0.2s;
     width: 100%;
-    min-height: 56px;
+    min-height: 60px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    position: relative;
+    gap: 12px;
 }
 .todo-item.completed {
-    opacity: 0.7;
+    opacity: 0.5;
     text-decoration: line-through;
+    background: #232526;
 }
 .todo-checkbox {
     margin-right: 18px;
     accent-color: #0078d4;
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
 }
 .todo-text {
     flex: 1;
-    font-size: 1.12rem;
+    font-size: 1.16rem;
     outline: none;
     background: transparent;
     color: inherit;
     border: none;
-    padding: 0 8px;
+    padding: 0 10px;
     transition: color 0.2s;
     min-width: 0;
+    font-weight: 500;
 }
 .todo-date-label {
-    margin-left: 16px;
-    font-size: 1rem;
+    margin-left: 18px;
+    font-size: 1.02rem;
     color: #b3b3b3;
     background: #181818;
-    border-radius: 8px;
-    padding: 6px 14px;
-    font-weight: 500;
+    border-radius: 10px;
+    padding: 7px 16px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
 }
 .todo-delete {
     background: none;
     border: none;
     color: #ff4c4c;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     cursor: pointer;
-    margin-left: 20px;
+    margin-left: 24px;
     transition: color 0.2s;
-    padding: 4px 8px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 .todo-delete:hover {
     color: #fff;
+    background: #ff4c4c22;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* Loading States */

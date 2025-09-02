@@ -82,20 +82,39 @@
             </div>
         </div>
         
-        <div class="app-content">
-            <h1>My To Do List</h1>
-            <form id="todoForm" class="todo-form">
-                <input type="text" id="todoInput" placeholder="Add a new task..." autocomplete="off" required />
-                <input type="date" id="todoDate" class="todo-date" />
-                <button type="submit" id="addTodoBtn"><i class="fas fa-plus"></i></button>
-            </form>
-            <div class="todo-controls">
-                <button id="filterAll" class="filter-btn active">All</button>
-                <button id="filterActive" class="filter-btn">Active</button>
-                <button id="filterCompleted" class="filter-btn">Completed</button>
-                <button id="clearCompleted" class="clear-btn"><i class="fas fa-trash"></i> Clear Completed</button>
+        <div class="app-body">
+            <!-- Sidebar for filter sections -->
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <h3>Filters</h3>
+                </div>
+                <button class="sidebar-section all-section selected" id="sidebarAll">
+                    <i class="fas fa-list"></i>
+                    <span>All</span>
+                </button>
+                <button class="sidebar-section active-section" id="sidebarActive">
+                    <i class="fas fa-circle"></i>
+                    <span>Active</span>
+                </button>
+                <button class="sidebar-section complete-section" id="sidebarComplete">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Completed</span>
+                </button>
+                <button class="sidebar-section trash-section" id="sidebarTrash">
+                    <i class="fas fa-trash"></i>
+                    <span>Trash</span>
+                </button>
             </div>
-            <ul id="todoList" class="todo-list"></ul>
+            
+            <div class="app-content">
+                <h1>My To Do List</h1>
+                <form id="todoForm" class="todo-form">
+                    <input type="text" id="todoInput" placeholder="Add a new task..." autocomplete="off" required />
+                    <input type="date" id="todoDate" class="todo-date" />
+                    <button type="submit" id="addTodoBtn"><i class="fas fa-plus"></i></button>
+                </form>
+                <ul id="todoList" class="todo-list"></ul>
+            </div>
         </div>
     </div>
 

@@ -240,18 +240,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const todoInput = document.getElementById('todoInput');
     const todoDate = document.getElementById('todoDate');
     const todoList = document.getElementById('todoList');
+    
+    // Sidebar filter sections
+    const sidebarAll = document.querySelector('.all-section');
+    const sidebarActive = document.querySelector('.active-section');
+    const sidebarCompleted = document.querySelector('.complete-section');
+    const sidebarTrash = document.querySelector('.trash-section');
+    
+    // Legacy filter buttons (if they exist)
     const filterAll = document.getElementById('filterAll');
     const filterActive = document.getElementById('filterActive');
     const filterCompleted = document.getElementById('filterCompleted');
     const clearCompleted = document.getElementById('clearCompleted');
+    
     let todos = [];
+    let trashedTodos = [];
     let filter = 'all';
 
     function renderTodos() {
         todoList.innerHTML = '';
-        let filtered = todos;
+        let filtered = [];
+        
+        if (filter === 'all') filtered = todos;
         if (filter === 'active') filtered = todos.filter(t => !t.completed);
         if (filter === 'completed') filtered = todos.filter(t => t.completed);
+        if (filter === 'trash') filtered = trashedTodos;
+        
         filtered.forEach((todo, idx) => {
             const li = document.createElement('li');
             li.className = 'todo-item' + (todo.completed ? ' completed' : '');
@@ -287,16 +301,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 li.appendChild(dateLabel);
             }
 
-            // Delete button
-            const delBtn = document.createElement('button');
-            delBtn.className = 'todo-delete';
-            delBtn.innerHTML = '<i class="fas fa-trash"></i>';
-            delBtn.addEventListener('click', () => {
-                todos.splice(todos.indexOf(todo), 1);
-                renderTodos();
-            });
-            li.appendChild(delBtn);
-
+            // Delete/Restore button
+            const actionBtn = document.createElement('button');
+            actionBtn.className = 'todo-delete';
+            
+            if (filter === 'trash') {
+                // Restore button for trash view
+                actionBtn.innerHTML = '<i class="fas fa-undo"></i>';
+                actionBtn.addEventListener('click', () => {
+                    // Move back to todos
+                    trashedTodos.splice(trashedTodos.indexOf(todo), 1);
+                    todos.push(todo);
+                    renderTodos();
+                });
+            } else {
+                // Delete button for normal views
+                actionBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                actionBtn.addEventListener('click', () => {
+                    // Move to trash
+                    todos.splice(todos.indexOf(todo), 1);
+                    trashedTodos.push(todo);
+                    renderTodos();
+                });
+            }
+            
+            li.appendChild(actionBtn);
             todoList.appendChild(li);
         });
     }
@@ -313,6 +342,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Sidebar filter event listeners
+    sidebarAll?.addEventListener('click', () => {
+        filter = 'all';
+        setActiveFilter();
+        renderTodos();
+    });
+    
+    sidebarActive?.addEventListener('click', () => {
+        filter = 'active';
+        setActiveFilter();
+        renderTodos();
+    });
+    
+    sidebarCompleted?.addEventListener('click', () => {
+        filter = 'completed';
+        setActiveFilter();
+        renderTodos();
+    });
+    
+    sidebarTrash?.addEventListener('click', () => {
+        filter = 'trash';
+        setActiveFilter();
+        renderTodos();
+    });
+
+    // Legacy filter buttons (backward compatibility)
     filterAll?.addEventListener('click', () => {
         filter = 'all';
         setActiveFilter();
@@ -334,10 +389,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function setActiveFilter() {
+        // Remove active class from all sidebar sections
+        [sidebarAll, sidebarActive, sidebarCompleted, sidebarTrash].forEach(section => {
+            section?.classList.remove('selected');
+        });
+        
+        // Remove active class from legacy filter buttons
         [filterAll, filterActive, filterCompleted].forEach(btn => btn?.classList.remove('active'));
-        if (filter === 'all') filterAll?.classList.add('active');
-        if (filter === 'active') filterActive?.classList.add('active');
-        if (filter === 'completed') filterCompleted?.classList.add('active');
+        
+        // Add selected class to current filter
+        if (filter === 'all') {
+            sidebarAll?.classList.add('selected');
+            filterAll?.classList.add('active');
+        }
+        if (filter === 'active') {
+            sidebarActive?.classList.add('selected');
+            filterActive?.classList.add('active');
+        }
+        if (filter === 'completed') {
+            sidebarCompleted?.classList.add('selected');
+            filterCompleted?.classList.add('active');
+        }
+        if (filter === 'trash') {
+            sidebarTrash?.classList.add('selected');
+        }
     }
 
     // Initial render

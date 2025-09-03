@@ -14,11 +14,12 @@ body {
     overflow: hidden;
 }
 
-/* Sidebar styles for filter sections */
+/* Sidebar*/
 .sidebar {
-    width: 280px;
-    height: 100%;
-    background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 100%);
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #232526 0%, #414345 100%);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -69,9 +70,9 @@ body {
 }
 
 .sidebar-section.selected {
-    background: linear-gradient(90deg, #0078d4 0%, #005fa3 100%);
+    background: linear-gradient(135deg, #232526 0%, #414345 100%);
     color: #fff;
-    box-shadow: 0 2px 12px rgba(0,120,212,0.25);
+    box-shadow: 0 2px 12px rgba(104, 98, 105, 0.25);
     border-left: 4px solid #fff;
 }
 
@@ -114,7 +115,7 @@ body {
     color: #fff;
 }
 
-/* Login Modal Styles */
+/* Login */
 .login-modal {
     position: fixed;
     top: 0;
@@ -168,7 +169,6 @@ body {
     }
 }
 
-/* Login Header */
 .login-header {
     padding: 20px 44px 0px 44px;
     text-align: center;
@@ -191,12 +191,10 @@ body {
     font-weight: 400;
 }
 
-/* Login Content */
 .login-content {
     padding: 0 44px 44px 44px;
 }
 
-/* Auth Buttons */
 .auth-button {
     width: 100%;
     height: 48px;
@@ -276,7 +274,6 @@ body {
     height: 20px;
 }
 
-/* Form Styles */
 .email-form {
     margin: 24px 0;
 }
@@ -343,7 +340,6 @@ body {
     z-index: 1;
 }
 
-/* Login Footer */
 .login-footer {
     margin-top: 32px;
 }
@@ -382,7 +378,7 @@ body {
     text-decoration: underline;
 }
 
-/* Main App Styles */
+/* Main App */
 .main-app {
     width: 100vw;
     min-height: 100vh;
@@ -400,13 +396,22 @@ body {
 .app-header {
     background: #ffffff;
     border-bottom: 1px solid #edebe9;
-    padding: 16px 24px;
+    padding: 30px 24px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     width: 100%;
     position: relative;
     z-index: 600;
+}
+
+.app-header h1{
+    font-size: 30px;
+    font-weight: 700;
+    color: #e2d6ca;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .app-body {
@@ -419,6 +424,8 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+    position: absolute;
+    right: 24px;
 }
 
 .user-avatar {
@@ -458,26 +465,16 @@ body {
 .app-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100%;
-    max-width: 480px;
-    margin: 48px auto;
-    background: #22223b;
+    height: 100%;
+    background: linear-gradient(135deg, #232526 0%, #414345 100%);
     border-radius: 24px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-    padding: 48px 40px 40px 40px;
+    padding: 40px;
     color: #fff;
     gap: 24px;
     animation: fadeIn 0.5s;
     flex: 1;
-}
-
-.app-content h1 {
-    font-size: 24px;
-    font-weight: 600;
-    color: #323130;
-    margin-bottom: 16px;
+    overflow: hidden;
 }
 
 .app-content p {
@@ -489,7 +486,7 @@ body {
 .todo-form {
     display: flex;
     gap: 18px;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
     width: 100%;
     background: #181818;
     border-radius: 12px;
@@ -522,14 +519,13 @@ body {
     background: linear-gradient(90deg, #0078d4 0%, #005fa3 100%);
     color: #fff;
     border: none;
-    border-radius: 12px;
-    padding: 0 32px;
-    font-size: 1.08rem;
+    border-radius: 50%;
+    padding: 15px;
+    font-size: 1rem;
     cursor: pointer;
     transition: background 0.2s;
     font-weight: 700;
     box-shadow: 0 2px 12px rgba(0,120,212,0.18);
-    letter-spacing: 0.5px;
 }
 #addTodoBtn:hover {
     background: #005fa3;
@@ -538,11 +534,11 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-    width: 100%;
-    min-height: 40vh;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 18px;
+    scrollbar-width: none;
 }
 .todo-item {
     display: flex;
@@ -583,7 +579,7 @@ body {
     font-weight: 500;
 }
 .todo-date-label {
-    margin-left: 18px;
+    margin-right: 35px;
     font-size: 0.9rem;
     color: #b3b3b3;
     background: #181818;
@@ -611,12 +607,34 @@ body {
     color: #fff;
     background: #ff4c4c22;
 }
+
+.clear-trash-btn {
+    margin-top: 16px;
+    padding: 12px 18px;
+    background: #ff4c4c;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background 0.2s ease-in-out;
+    align-self: flex-end;
+}
+
+.clear-trash-btn:hover {
+    background: #d93636;
+}
+
+.clear-trash-btn.clear-hidden {
+    display: none;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
-/* Loading States */
 .auth-button.loading {
     position: relative;
     color: transparent;
@@ -639,7 +657,7 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* Error States */
+/* Error Messages */
 .input-group.error input {
     border-color: #d13438;
     box-shadow: 0 0 0 1px #d13438;

@@ -482,7 +482,6 @@ body {
     color: #605e5c;
 }
 
-/* To-Do List Styles */
 .todo-form {
     display: flex;
     gap: 18px;
@@ -505,16 +504,45 @@ body {
     box-shadow: 0 1px 4px rgba(0,0,0,0.10);
     transition: background 0.2s;
 }
+
 .todo-date {
     padding: 16px 20px;
     border-radius: 12px;
     border: 1px solid #404040;
     background: transparent;
-    color: #fff;
-    font-size: 0.95rem;
+    color: #ffffff;
+    font-size: 1rem;
     box-shadow: 0 1px 4px rgba(0,0,0,0.10);
     transition: background 0.2s;
 }
+.todo-date::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg);
+    width: 22px;
+    height: 22px;
+    margin-left: 8px;
+}
+
+.todo-time {
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 1px solid #404040;
+    background: #181818;
+    color: #f3f3f3;
+    font-size: 0.95rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+    transition: background 0.2s, border-color 0.2s;
+}
+    
+.todo-time::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(34%) sepia(98%) saturate(2000%) hue-rotate(190deg); /* blue tone */
+    width: 22px;
+    height: 22px;
+    margin-left: 8px;
+}
+
+
 #addTodoBtn {
     background: linear-gradient(90deg, #0078d4 0%, #005fa3 100%);
     color: #fff;
@@ -527,9 +555,11 @@ body {
     font-weight: 700;
     box-shadow: 0 2px 12px rgba(0,120,212,0.18);
 }
+
 #addTodoBtn:hover {
     background: #005fa3;
 }
+
 .todo-list {
     list-style: none;
     padding: 0;

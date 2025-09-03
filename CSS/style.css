@@ -687,7 +687,6 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* Error Messages */
 .input-group.error input {
     border-color: #d13438;
     box-shadow: 0 0 0 1px #d13438;
@@ -705,30 +704,46 @@ body {
     box-shadow: 0 0 0 1px #107c10;
 }
 
-/* ======================
-   Mobile Styles (≤480px)
-   ====================== */
 @media (max-width: 480px) {
 
-  .app-body {
-    flex-direction: column;
-    height: auto;
+  .sidebar-header {
+    display: none;
   }
 
   .sidebar {
     width: 100%;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
     overflow-x: auto;
     border-radius: 0;
     box-shadow: none;
     margin-bottom: 12px;
+    background: #181818;
+    padding: 6px 0;
   }
+
   .sidebar-section {
-    flex: 1;
+    flex: none;                
+    min-width: 70px;        
+    text-align: center;
     justify-content: center;
-    padding: 8px;
     font-size: 0.8rem;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: transparent;
+  }
+
+  .sidebar-section.selected {
+    background: rgba(255,255,255,0.1);
+    border-left: none;     
+    box-shadow: none;
+  }
+
+  .app-body {
+    flex-direction: column;
+    height: auto;
   }
 
   .app-content {
@@ -740,11 +755,28 @@ body {
     flex-direction: column;
     gap: 10px;
   }
-  .todo-form input,
-  .todo-form button {
+  .todo-form input {
     width: 100%;
   }
 
+  /* Rectangular Add Task button */
+  #addTodoBtn {
+    width: 100%;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: linear-gradient(90deg, #0078d4 0%, #005fa3 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+  #addTodoBtn i {
+    font-size: 1.1rem;
+  }
+
+  /* Todo items adjust */
   .todo-item {
     flex-direction: column;
     align-items: flex-start;
@@ -759,6 +791,7 @@ body {
     align-self: flex-end;
   }
 
+  /* Header adjusts */
   .app-header {
     flex-direction: column;
     padding: 12px;
@@ -774,6 +807,7 @@ body {
     gap: 6px;
   }
 
+  /* Fonts */
   .todo-text {
     font-size: 0.85rem;
   }

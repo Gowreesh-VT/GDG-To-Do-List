@@ -294,10 +294,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             li.appendChild(span);
 
-            if (todo.date) {
-                const dateLabel = document.createElement('span');
-                dateLabel.className = 'todo-date-label';
-                dateLabel.textContent = todo.date;
+            if (todo.date || todo.time) {
+                const dateLabel = document.createElement("span");
+                dateLabel.className = "todo-date-label";
+                dateLabel.textContent = `${todo.date || ""} ${todo.time || ""}`.trim();
                 li.appendChild(dateLabel);
             }
 
@@ -325,14 +325,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    todoForm?.addEventListener('submit', (e) => {
+   todoForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        const value = todoInput.value.trim();
-        const dateValue = todoDate.value;
-        if (value) {
-            todos.push({ text: value, completed: false, date: dateValue });
-            todoInput.value = '';
-            todoDate.value = '';
+        const text = todoInput.value.trim();
+        const date = todoDate.value;
+        const time = todoTime.value;
+    
+        if (text) {
+            todos.push({
+                text,
+                completed: false,
+                date,
+                time
+            });
+            todoInput.value = "";
+            todoDate.value = "";
+            todoTime.value = "";
             renderTodos();
         }
     });

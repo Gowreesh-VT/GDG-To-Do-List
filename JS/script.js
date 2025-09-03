@@ -132,7 +132,6 @@ class AuthManager {
         this.showMessage('Logged out successfully', 'success');
     }
 
-    // Handle successful login
     handleSuccessfulLogin(user) {
         this.currentUser = user;
         this.updateUserUI();
@@ -140,7 +139,6 @@ class AuthManager {
         this.showMainApp();
     }
 
-    // Update user interface
     updateUserUI() {
         const userName = document.getElementById('userName');
         const userInitials = document.getElementById('userInitials');
@@ -235,19 +233,18 @@ class AuthManager {
 document.addEventListener('DOMContentLoaded', () => {
     window.authManager = new AuthManager();
 
-    // Enhanced To-Do List Logic
     const todoForm = document.getElementById('todoForm');
     const todoInput = document.getElementById('todoInput');
     const todoDate = document.getElementById('todoDate');
     const todoList = document.getElementById('todoList');
-    
-    // Sidebar filter sections
+
     const sidebarAll = document.querySelector('.all-section');
     const sidebarActive = document.querySelector('.active-section');
     const sidebarCompleted = document.querySelector('.complete-section');
     const sidebarTrash = document.querySelector('.trash-section');
+    const clearTrashBtn = document.getElementById('clearTrashBtn');
+
     
-    // Legacy filter buttons (if they exist)
     const filterAll = document.getElementById('filterAll');
     const filterActive = document.getElementById('filterActive');
     const filterCompleted = document.getElementById('filterCompleted');
@@ -265,12 +262,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (filter === 'active') filtered = todos.filter(t => !t.completed);
         if (filter === 'completed') filtered = todos.filter(t => t.completed);
         if (filter === 'trash') filtered = trashedTodos;
+
+        if (filter === 'trash' && trashedTodos.length > 0) {
+            clearTrashBtn.classList.remove('clear-hidden');
+        } else {
+            clearTrashBtn.classList.add('clear-hidden');
+        }
         
-        filtered.forEach((todo, idx) => {
+        filtered.forEach((todo) => {
             const li = document.createElement('li');
             li.className = 'todo-item' + (todo.completed ? ' completed' : '');
 
-            // Checkbox
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.checked = todo.completed;
@@ -281,7 +283,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             li.appendChild(checkbox);
 
-            // Task text (editable)
             const span = document.createElement('span');
             span.className = 'todo-text';
             span.textContent = todo.text;
@@ -293,7 +294,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             li.appendChild(span);
 
-            // Due date
             if (todo.date) {
                 const dateLabel = document.createElement('span');
                 dateLabel.className = 'todo-date-label';
@@ -301,24 +301,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 li.appendChild(dateLabel);
             }
 
-            // Delete/Restore button
             const actionBtn = document.createElement('button');
             actionBtn.className = 'todo-delete';
             
             if (filter === 'trash') {
-                // Restore button for trash view
                 actionBtn.innerHTML = '<i class="fas fa-undo"></i>';
                 actionBtn.addEventListener('click', () => {
-                    // Move back to todos
                     trashedTodos.splice(trashedTodos.indexOf(todo), 1);
                     todos.push(todo);
                     renderTodos();
                 });
             } else {
-                // Delete button for normal views
                 actionBtn.innerHTML = '<i class="fas fa-trash"></i>';
-                actionBtn.addEventListener('click', () => {
-                    // Move to trash
+                actionBtn.addEventListener('click', () => { 
                     todos.splice(todos.indexOf(todo), 1);
                     trashedTodos.push(todo);
                     renderTodos();
@@ -387,6 +382,13 @@ document.addEventListener('DOMContentLoaded', () => {
         todos = todos.filter(t => !t.completed);
         renderTodos();
     });
+    clearTrashBtn.addEventListener('click', () => {
+        if (confirm("Are you sure you want to permanently delete all tasks in Trash?")) {
+            trashedTodos = [];
+            renderTodos();
+        }
+    });
+
 
     function setActiveFilter() {
         // Remove active class from all sidebar sections

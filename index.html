@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Microsoft To Do</title>
+    <title>GDG To Do</title>
     <link rel="stylesheet" href="CSS/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -71,6 +71,7 @@
     <!-- Main Application -->
     <div id="mainApp" class="main-app hidden">
         <div class="app-header">
+            <h1>To Do List</h1>
             <div class="user-info">
                 <div class="user-avatar">
                     <span id="userInitials">U</span>
@@ -107,13 +108,16 @@
             </div>
             
             <div class="app-content">
-                <h1>My To Do List</h1>
+                
                 <form id="todoForm" class="todo-form">
                     <input type="text" id="todoInput" placeholder="Add a new task..." autocomplete="off" required />
                     <input type="date" id="todoDate" class="todo-date" />
                     <button type="submit" id="addTodoBtn"><i class="fas fa-plus"></i></button>
                 </form>
                 <ul id="todoList" class="todo-list"></ul>
+                <button id="clearTrashBtn" class="clear-trash-btn clear-hidden">
+                    <i class="fas fa-trash-alt"></i> Delete Permanently
+                 </button>
             </div>
         </div>
     </div>
